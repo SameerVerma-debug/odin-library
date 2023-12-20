@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        <h1>Library</h1>
+        <button class="log-in">Log in</button>
+      </div>
+
+      <div id="main">
+        <div class="add-book-div">
+          <button class="add-book">+ Add Book</button>
+        </div>
+        <div id="books-container"></div>
+      </div>
+
+      <div id="footer">
+        <p>Copyright 2023 Sameer Verma</p>
+      </div>
+    </div>
+
+    <div class="dialog">
+      <h2>Add new book</h2>
+      <form>
+        <div>
+          <input type="text" placeholder="Title" id="title" required />
+        </div>
+        <div>
+          <input type="text" placeholder="Author" id="author" required />
+        </div>
+        <div>
+          <input type="number" placeholder="Pages" id="pages" required />
+        </div>
+        <div>
+          <label for="is-read">Have you read it? </label>
+          <input type="checkbox" id="is-read" />
+        </div>
+        <button id="submit" value="default">Submit</button>
+      </form>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
