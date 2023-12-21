@@ -17,32 +17,49 @@
         <div class="add-book-div">
           <button class="add-book">+ Add Book</button>
         </div>
+        <dialog class="dialog">
+          <h2>Add new book</h2>
+          <form method="dialog">
+            <div>
+              <input
+                type="text"
+                placeholder="Title"
+                id="title"
+                name="title"
+              />
+              <div id="titleError" class="error"></div>
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Author"
+                id="author"
+                name="author"
+              />
+              <div id="authorError" class="error"></div>
+            </div>
+            <div>
+              <input
+                type="number"
+                placeholder="Pages"
+                id="pages"
+                name="pages"
+              />
+              <div id="pagesError" class="error"></div>
+            </div>
+            <div>
+              <label for="is-read">Have you read it? </label>
+              <input type="checkbox" id="is-read" name="is-read" />
+            </div>
+            <button id="submit" value="default">Submit</button>
+          </form>
+        </dialog>
         <div id="books-container"></div>
       </div>
 
       <div id="footer">
         <p>Copyright 2023 Sameer Verma</p>
       </div>
-    </div>
-
-    <div class="dialog">
-      <h2>Add new book</h2>
-      <form>
-        <div>
-          <input type="text" placeholder="Title" id="title" required />
-        </div>
-        <div>
-          <input type="text" placeholder="Author" id="author" required />
-        </div>
-        <div>
-          <input type="number" placeholder="Pages" id="pages" required />
-        </div>
-        <div>
-          <label for="is-read">Have you read it? </label>
-          <input type="checkbox" id="is-read" />
-        </div>
-        <button id="submit" value="default">Submit</button>
-      </form>
     </div>
     <script src="script.js"></script>
   </body>
