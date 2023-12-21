@@ -12,17 +12,13 @@ function createCard(book, index) {
   card.setAttribute("class", "card");
   card.setAttribute("data-value", `${index}`);
   card.innerHTML = `
-    <div class="title-div">
-      <h3>Title:</h3>
-      <p>${book.title}</p>
-    </div>
-    <div class="author-div">
-      <h3>Author:</h3>
-      <p>${book.author}</p>
-    </div>
-    <div class="pages-div">
-      <h3>Pages:</h3>
-      <p>${book.pages}</p>
+    <div class="book-description-wrapper">
+        <h3>Title:</h3>
+        <p>${book.title}</p>
+        <h3>Author:</h3>
+        <p>${book.author}</p>
+        <h3>Pages:</h3>
+        <p>${book.pages}</p>
     </div>
     <button class="isRead-button">${
       book.isRead == true ? "Read" : "Not Read"
@@ -71,12 +67,14 @@ function addBookToLibrary(book) {
     readButton.addEventListener("click", (e) => {
       if (readButton.innerText == "Read") {
         readButton.innerText = "Not Read";
-        book.isRead = false;
         readButton.style.backgroundColor = "red";
+        const index = readButton.parentNode.attributes["data-value"].value;
+        myLibrary[index].isRead = false;
       } else {
         readButton.innerText = "Read";
-        book.isRead = true;
         readButton.style.backgroundColor = "green";
+        const index = readButton.parentNode.attributes["data-value"].value;
+        myLibrary[index].isRead = true;
       }
     });
   }

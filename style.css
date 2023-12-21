@@ -60,10 +60,6 @@ form > button:active {
 
 #main {
   padding: 1.3rem;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  gap: 3rem;
-  position: relative;
 }
 
 .add-book-div {
@@ -147,27 +143,32 @@ form > button {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
   justify-content: space-around;
-  align-items: top;
+  margin-top: 3.5rem;
 }
 
 .card {
   border: 1px solid black;
-  height: fit-content;
+  height: auto;
   display: flex;
   flex-direction: column;
   box-shadow: 5px 5px 5px lightgray;
   background-color: white;
   border-radius: 8px;
-  padding: 1.1rem;
+  padding: 2rem;
   gap: 1rem;
   border: none;
 }
 
-.card > div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap:0.4rem;
+.book-description-wrapper{
+  display: grid;
+  grid-template-columns:auto 20ch;
+  gap:0.5rem;
+  justify-content: start;
+  flex: 1;
+}
+
+p{
+  word-wrap: break-word;
 }
 
 .card > button {
