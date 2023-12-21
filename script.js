@@ -95,7 +95,7 @@ function validateForm(){
   }
 
   if(bookPages.value == "" || parseInt(bookPages.value) <=0){
-    pagesError.innerHTML = "Pages must be a number<br> greater than 0";
+    pagesError.innerText = "Pages must be a number greater than 0";
     isValid = false;
   }
 

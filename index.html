@@ -18,41 +18,43 @@
           <button class="add-book">+ Add Book</button>
         </div>
         <dialog class="dialog">
-          <h2>Add new book</h2>
-          <form method="dialog">
-            <div>
-              <input
-                type="text"
-                placeholder="Title"
-                id="title"
-                name="title"
-              />
-              <div id="titleError" class="error"></div>
-            </div>
-            <div>
-              <input
-                type="text"
-                placeholder="Author"
-                id="author"
-                name="author"
-              />
-              <div id="authorError" class="error"></div>
-            </div>
-            <div>
-              <input
-                type="number"
-                placeholder="Pages"
-                id="pages"
-                name="pages"
-              />
-              <div id="pagesError" class="error"></div>
-            </div>
-            <div>
-              <label for="is-read">Have you read it? </label>
-              <input type="checkbox" id="is-read" name="is-read" />
-            </div>
-            <button id="submit" value="default">Submit</button>
-          </form>
+          <div class="dialog-content-wrapper">
+            <h2>Add new book</h2>
+            <form method="dialog">
+              <div class="title-div">
+                <input
+                  type="text"
+                  placeholder="Title"
+                  id="title"
+                  name="title"
+                />
+                <div id="titleError" class="error"></div>
+              </div>
+              <div class="author-div">
+                <input
+                  type="text"
+                  placeholder="Author"
+                  id="author"
+                  name="author"
+                />
+                <div id="authorError" class="error"></div>
+              </div>
+              <div class="pages-div">
+                <input
+                  type="number"
+                  placeholder="Pages"
+                  id="pages"
+                  name="pages"
+                />
+                <div id="pagesError" class="error"></div>
+              </div>
+              <div class="isRead-div">
+                <label for="is-read">Have you read it? </label>
+                <input type="checkbox" id="is-read" name="is-read" />
+              </div>
+              <button id="submit" value="default">Submit</button>
+            </form>
+          </div>
         </dialog>
         <div id="books-container"></div>
       </div>
