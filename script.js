@@ -9,8 +9,8 @@ function Book(title, author, pages, isRead) {
 
 function createCard(book, index) {
   const card = document.createElement("div");
-  card.setAttribute("class","card");
-  card.setAttribute("data-value",`${index}`);
+  card.setAttribute("class", "card");
+  card.setAttribute("data-value", `${index}`);
   card.innerHTML = `
     <div class="title-div">
       <h3>Title:</h3>
@@ -32,69 +32,70 @@ function createCard(book, index) {
   return card;
 }
 
-function displayBooks(){
+function displayBooks() {
   booksContainer.innerHTML = "";
-  for(let index = 0 ; index < myLibrary.length ; index++){
+  for (let index = 0; index < myLibrary.length; index++) {
     const card = createCard(myLibrary[index], index);
     booksContainer.append(card);
   }
 
   const isReadButtons = document.querySelectorAll(".card > .isRead-button");
-  for(let isReadButton of isReadButtons){
-    if(isReadButton.innerText.trim() == 'Read'){
+  for (let isReadButton of isReadButtons) {
+    if (isReadButton.innerText.trim() == "Read") {
       isReadButton.style.backgroundColor = "green";
-    }
-    else if(isReadButton.innerText.trim() == "Not Read"){
+    } else if (isReadButton.innerText.trim() == "Not Read") {
       isReadButton.style.backgroundColor = "red";
     }
   }
 }
 
-
 function addBookToLibrary(book) {
-  if(book){
-  myLibrary.push(book);
-}
+  if (book) {
+    myLibrary.push(book);
+  }
   displayBooks();
 
   const removeButtons = document.querySelectorAll(".card > .remove-button");
-  for(let removeButton of removeButtons){
-    removeButton.addEventListener("click",(e)=>{
-      const index = parseInt(removeButton.parentNode.attributes["data-value"].value);  
-      myLibrary.splice(index,1);
+  for (let removeButton of removeButtons) {
+    removeButton.addEventListener("click", (e) => {
+      const index = parseInt(
+        removeButton.parentNode.attributes["data-value"].value
+      );
+      myLibrary.splice(index, 1);
       addBookToLibrary();
-    })
+    });
   }
 
   const readButtons = document.querySelectorAll(".card > .isRead-button");
-  for(let readButton of readButtons){
-    readButton.addEventListener("click",(e) => {
-      if(readButton.innerText == "Read"){
+  for (let readButton of readButtons) {
+    readButton.addEventListener("click", (e) => {
+      if (readButton.innerText == "Read") {
         readButton.innerText = "Not Read";
+        book.isRead = false;
         readButton.style.backgroundColor = "red";
-      }
-      else{
+      } else {
         readButton.innerText = "Read";
+        book.isRead = true;
         readButton.style.backgroundColor = "green";
       }
-    })
+    });
   }
 }
 
-function validateForm(){
+function validateForm() {
   let isValid = true;
 
-  if(bookTitle.value.trim() == '' || bookTitle.value == null){
+  if (bookTitle.value.trim() == "" || bookTitle.value == null) {
     titleError.innerText = "Title Cannot be empty";
     isValid = false;
   }
 
-  if(bookAuthor.value.trim() == "" || bookAuthor.value == null){
+  if (bookAuthor.value.trim() == "" || bookAuthor.value == null) {
     authorError.innerText = "Author Cannot be empty";
     isValid = false;
   }
 
-  if(bookPages.value == "" || parseInt(bookPages.value) <=0){
+  if (bookPages.value == "" || parseInt(bookPages.value) <= 0) {
     pagesError.innerText = "Pages must be a number greater than 0";
     isValid = false;
   }
@@ -125,17 +126,16 @@ submit.addEventListener("click", (e) => {
   const pages = bookPages.value;
   const isRead = bookRead.checked;
 
-  titleError.innerText = '';
-  authorError.innerText = '';
-  pagesError.innerText = '';
+  titleError.innerText = "";
+  authorError.innerText = "";
+  pagesError.innerText = "";
 
-  if(validateForm()){
+  if (validateForm()) {
     const book = new Book(title, author, pages, isRead);
     addBookToLibrary(book);
     form.reset();
     dialog.close();
-  }
-  else{
+  } else {
     e.preventDefault();
   }
 });
