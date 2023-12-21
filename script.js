@@ -9,8 +9,9 @@ function Book(title, author, pages, isRead) {
 
 function createCard(book, index) {
   const card = document.createElement("div");
+  card.setAttribute("class","card");
+  card.setAttribute("data-value",`${index}`);
   card.innerHTML = `
-  <div class="card" data-value="${index}">
     <div class="title-div">
       <h3>Title:</h3>
       <p>${book.title}</p>
@@ -27,19 +28,57 @@ function createCard(book, index) {
       book.isRead == true ? "Read" : "Not Read"
     }</button>
     <button class="remove-button">Remove</button>
-  </div>
   `;
   return card;
 }
 
-function addBookToLibrary(book) {
-  myLibrary.push(book);
+function displayBooks(){
   booksContainer.innerHTML = "";
-
-  myLibrary.forEach((book, index) => {
-    const card = createCard(book, index);
+  for(let index = 0 ; index < myLibrary.length ; index++){
+    const card = createCard(myLibrary[index], index);
     booksContainer.append(card);
-  });
+  }
+
+  const isReadButtons = document.querySelectorAll(".card > .isRead-button");
+  for(let isReadButton of isReadButtons){
+    if(isReadButton.innerText.trim() == 'Read'){
+      isReadButton.style.backgroundColor = "green";
+    }
+    else if(isReadButton.innerText.trim() == "Not Read"){
+      isReadButton.style.backgroundColor = "red";
+    }
+  }
+}
+
+
+function addBookToLibrary(book) {
+  if(book){
+  myLibrary.push(book);
+}
+  displayBooks();
+
+  const removeButtons = document.querySelectorAll(".card > .remove-button");
+  for(let removeButton of removeButtons){
+    removeButton.addEventListener("click",(e)=>{
+      const index = parseInt(removeButton.parentNode.attributes["data-value"].value);  
+      myLibrary.splice(index,1);
+      addBookToLibrary();
+    })
+  }
+
+  const readButtons = document.querySelectorAll(".card > .isRead-button");
+  for(let readButton of readButtons){
+    readButton.addEventListener("click",(e) => {
+      if(readButton.innerText == "Read"){
+        readButton.innerText = "Not Read";
+        readButton.style.backgroundColor = "red";
+      }
+      else{
+        readButton.innerText = "Read";
+        readButton.style.backgroundColor = "green";
+      }
+    })
+  }
 }
 
 function validateForm(){
@@ -55,8 +94,8 @@ function validateForm(){
     isValid = false;
   }
 
-  if(bookPages.value == "" || bookPages.value == null || isNaN(bookPages.value) || parseInt(bookPages.value) <=0){
-    pagesError.innerText = "Pages must be greater than 0";
+  if(bookPages.value == "" || parseInt(bookPages.value) <=0){
+    pagesError.innerHTML = "Pages must be a number<br> greater than 0";
     isValid = false;
   }
 
@@ -75,7 +114,6 @@ const authorError = document.querySelector("#authorError");
 const pagesError = document.querySelector("#pagesError");
 const bookRead = document.querySelector("#is-read");
 const form = document.querySelector("form");
-
 
 addBook.addEventListener("click", (e) => {
   dialog.showModal();
